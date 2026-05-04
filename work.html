@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandy Yoo — Work</title>
+<link rel="stylesheet" href="https://use.typekit.net/cka7odn.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --crimson: #FF003F;
+  --black: #0A0A0A;
+  --white: #F5F4F0;
+  --grey: #666;
+  --mid: #141414;
+  --border: rgba(245,244,240,0.1);
+  --font: 'Barlow Condensed', sans-serif;
+  --body: 'Barlow', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--body); font-weight: 300; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+}
+.nav-logo { display: flex; align-items: center; gap: 20px; text-decoration: none; }
+.nav-logo img { height: 28px; filter: invert(1) hue-rotate(195deg) saturate(1.2) brightness(1.05); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-family: var(--font); font-weight: 400; font-size: .7rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--grey); text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--white); }
+
+/* CAMPAIGN NAV TABS */
+.campaign-tabs {
+  position: fixed; top: 65px; left: 0; right: 0; z-index: 99;
+  background: rgba(10,10,10,0.9); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  display: flex; gap: 0; overflow-x: auto; padding: 0 48px;
+  scrollbar-width: none;
+}
+.campaign-tabs::-webkit-scrollbar { display: none; }
+.tab {
+  font-family: var(--font); font-weight: 600; font-size: .65rem;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--grey); text-decoration: none;
+  padding: 14px 24px; border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s; white-space: nowrap;
+}
+.tab:hover { color: var(--white); }
+.tab.active { color: var(--crimson); border-bottom-color: var(--crimson); }
+
+/* MAIN CONTENT */
+main { padding-top: 120px; }
+
+/* CAMPAIGN SECTION */
+.campaign {
+  padding: 80px 48px 100px;
+  border-bottom: 1px solid var(--border);
+}
+.campaign-header { margin-bottom: 48px; }
+.campaign-number {
+  font-family: var(--font); font-weight: 300; font-size: .6rem;
+  letter-spacing: .45em; text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 12px;
+}
+.campaign-title {
+  font-family: var(--font); font-weight: 900;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: .9; letter-spacing: -.01em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.campaign-tagline {
+  font-family: var(--font); font-weight: 300;
+  font-size: clamp(14px, 1.8vw, 20px);
+  letter-spacing: .04em; text-transform: uppercase; color: var(--grey);
+}
+.campaign-courage {
+  font-family: var(--font); font-weight: 400; font-size: .65rem;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: rgba(245,244,240,.3); margin-top: 8px;
+}
+
+/* COVER IMAGE */
+.campaign-cover {
+  width: 100%; aspect-ratio: 16/7;
+  object-fit: cover; display: block;
+  margin-bottom: 4px;
+}
+
+/* INSIGHT + STRATEGY */
+.campaign-copy {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; margin: 48px 0;
+}
+.copy-block {}
+.copy-label {
+  font-family: var(--font); font-size: .58rem;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--crimson); margin-bottom: 12px;
+}
+.copy-text {
+  font-size: .92rem; line-height: 1.85; color: var(--grey);
+}
+
+/* WORK GRID */
+.work-label {
+  font-family: var(--font); font-size: .58rem;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--crimson); margin-bottom: 16px;
+}
+.work-grid {
+  display: grid; gap: 4px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+}
+.work-grid.wide { grid-template-columns: repeat(2, 1fr); }
+.work-img {
+  width: 100%; display: block;
+  object-fit: cover; aspect-ratio: 16/10;
+  transition: opacity .3s;
+}
+.work-img:hover { opacity: .85; }
+.work-img.portrait { aspect-ratio: 3/4; }
+.work-img.landscape { aspect-ratio: 21/9; }
+
+/* LIGHTBOX */
+#lightbox {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.95); z-index: 1000;
+  align-items: center; justify-content: center;
+  padding: 40px;
+}
+#lightbox.open { display: flex; }
+#lightbox img {
+  max-width: 100%; max-height: 90vh;
+  object-fit: contain; display: block;
+}
+#lightbox-close {
+  position: absolute; top: 24px; right: 32px;
+  font-family: var(--font); font-size: .65rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--grey);
+  background: none; border: 1px solid var(--border);
+  padding: 8px 18px; cursor: pointer; transition: color .2s, border-color .2s;
+}
+#lightbox-close:hover { color: var(--white); border-color: var(--white); }
+#lightbox-prev, #lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-family: var(--font); font-size: 1.4rem; color: var(--grey);
+  background: none; border: none; cursor: pointer;
+  padding: 20px; transition: color .2s;
+}
+#lightbox-prev:hover, #lightbox-next:hover { color: var(--white); }
+#lightbox-prev { left: 20px; }
+#lightbox-next { right: 20px; }
+#lightbox-caption {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font); font-size: .6rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--grey); white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="wordmark.svg" alt="Sandy Yoo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html" class="active">Work</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- CAMPAIGN TABS -->
+<div class="campaign-tabs">
+  <a href="#nike"    class="tab">01 Nike</a>
+  <a href="#rivian"  class="tab">02 Rivian</a>
+  <a href="#loreal"  class="tab">03 L'Oréal</a>
+  <a href="#lacroix" class="tab">04 LaCroix</a>
+  <a href="#breeze"  class="tab">05 Breeze</a>
+  <a href="#pepsi"   class="tab">06 Pepsi</a>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════
+     01 — NIKE
+═══════════════════════════════════ -->
+<section class="campaign" id="nike">
+  <div class="campaign-header">
+    <div class="campaign-number">Campaign 01</div>
+    <div class="campaign-title">Nike</div>
+    <div class="campaign-tagline">DON'T LOSE ANOT<span style="color:var(--crimson)">HER</span></div>
+    <div class="campaign-courage">Courage to Indict</div>
+  </div>
+
+  <img class="campaign-cover" src="images/nike-preview.png" alt="Nike Campaign Cover" onclick="openLightbox(this)">
+
+  <div class="campaign-copy">
+    <div class="copy-block">
+      <div class="copy-label">The Insight</div>
+      <p class="copy-text">80% of girls drop out of sport by age 14. Not because they want to. Because the world tells them they don't belong. Girls are hearing it through rosters, coaching culture, body shaming, media silence. And then it calls it a choice. This isn't attrition. It's exclusion.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">The Strategy</div>
+      <p class="copy-text">This campaign is built around a wordplay system that embeds HER into the tagline. The iconic Swoosh is rendered in purple, signifying this cause as distinct and deliberate. Strong imagery of girls in sport stops viewers cold, exposes injustice, and leaves something impossible to ignore.</p>
+    </div>
+  </div>
+
+  <div class="work-label">Executions</div>
+  <div class="work-grid">
+    <img class="work-img landscape" src="images/nike-exec-01.png" alt="Nike IG Reel" onclick="openLightbox(this)">
+    <img class="work-img" src="images/nike-exec-02.png" alt="Nike Arena Screen" onclick="openLightbox(this)">
+    <img class="work-img" src="images/nike-exec-03.png" alt="Nike Times Square OOH" onclick="openLightbox(this)">
+    <img class="work-img" src="images/nike-exec-04.png" alt="Nike Street Billboard" onclick="openLightbox(this)">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     02 — RIVIAN
+═══════════════════════════════════ -->
+<section class="campaign" id="rivian">
+  <div class="campaign-header">
+    <div class="campaign-number">Campaign 02</div>
+    <div class="campaign-title">Rivian</div>
+    <div class="campaign-tagline">Rules Rewritten</div>
+    <div class="campaign-courage">Courage to Declare</div>
+  </div>
+
+  <img class="campaign-cover" src="images/rivian-preview.png" alt="Rivian Campaign Cover" onclick="openLightbox(this)">
+
+  <div class="campaign-copy">
+    <div class="copy-block">
+      <div class="copy-label">The Insight</div>
+      <p class="copy-text">Electric vehicles have spent a decade selling restraint to the people who were already declaring the future. No electric vehicle has been bold enough to speak their language. Electric speaks to conscience. But it has never spoken to command until now.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">The Strategy</div>
+      <p class="copy-text">The strategy reframes EVs from conscience to command. Darkness speaks directly to the audience's world of dark mode and premium aesthetics, where serious work happens. The headlights are the campaign's visual metaphor of forward dominance and seeing further than anyone else.</p>
+    </div>
+  </div>
+
+  <div class="work-label">Executions</div>
+  <div class="work-grid">
+    <img class="work-img landscape" src="images/rivian-exec-01.png" alt="Rivian OOH SF" onclick="openLightbox(this)">
+    <img class="work-img" src="images/rivian-exec-02.png" alt="Rivian Parking OOH" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/rivian-exec-03.png" alt="Rivian Everything Else is a Blur" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/rivian-exec-04.png" alt="Rivian IG Reel" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/rivian-exec-05.png" alt="Rivian It Saw You First" onclick="openLightbox(this)">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     03 — L'ORÉAL
+═══════════════════════════════════ -->
+<section class="campaign" id="loreal">
+  <div class="campaign-header">
+    <div class="campaign-number">Campaign 03</div>
+    <div class="campaign-title">L'Oréal</div>
+    <div class="campaign-tagline">The Red Velvet Chair</div>
+    <div class="campaign-courage">Courage to Confront</div>
+  </div>
+
+  <img class="campaign-cover" src="images/loreal-preview.png" alt="L'Oréal Campaign Cover" onclick="openLightbox(this)">
+
+  <div class="campaign-copy">
+    <div class="copy-block">
+      <div class="copy-label">The Insight</div>
+      <p class="copy-text">Beauty campaigns have spoken to aspiration while quietly gatekeeping worth. A self-aware, performance-fatigued Gen Z finds L'Oréal's original tagline "I'm worth it" increasingly hollow. A once radical slogan that had once promised empowerment has surrendered its radical core.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">The Strategy</div>
+      <p class="copy-text">This campaign restores the radical core of "I'm worth it" through raw vulnerability and honest storytelling. The chair invites those the industry ignored to share their stories. Worth is no longer defined by performative beauty. Beauty is defined by the courage to be seen.</p>
+    </div>
+  </div>
+
+  <div class="work-label">Executions</div>
+  <div class="work-grid">
+    <img class="work-img landscape" src="images/loreal-exec-01.png" alt="L'Oréal OOH 01" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/loreal-exec-02.png" alt="L'Oréal OOH 02" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/loreal-exec-03.png" alt="L'Oréal Transit OOH" onclick="openLightbox(this)">
+    <img class="work-img" src="images/loreal-exec-04.png" alt="L'Oréal Platform OOH" onclick="openLightbox(this)">
+    <img class="work-img" src="images/loreal-exec-05.png" alt="L'Oréal Stairwell" onclick="openLightbox(this)">
+    <img class="work-img" src="images/loreal-exec-06.png" alt="L'Oréal TikTok" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/loreal-exec-07.png" alt="L'Oréal IG Reel" onclick="openLightbox(this)">
+    <img class="work-img" src="images/loreal-exec-08.png" alt="L'Oréal Art Basel" onclick="openLightbox(this)">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     04 — LACROIX
+═══════════════════════════════════ -->
+<section class="campaign" id="lacroix">
+  <div class="campaign-header">
+    <div class="campaign-number">Campaign 04</div>
+    <div class="campaign-title">LaCroix</div>
+    <div class="campaign-tagline">"Your Summer Refresh"</div>
+    <div class="campaign-courage">Courage to Play</div>
+  </div>
+
+  <img class="campaign-cover" src="images/lacroix-preview.png" alt="LaCroix Campaign Cover" onclick="openLightbox(this)">
+
+  <div class="campaign-copy">
+    <div class="copy-block">
+      <div class="copy-label">The Insight</div>
+      <p class="copy-text">People are trading sugary sodas for healthier options. But healthy drinks are too often branded as serious and functional. Summer gatherings deserve more than a compromise. They deserve a drink as bright, bold, and alive as the season itself.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">The Strategy</div>
+      <p class="copy-text">Bright summer colors, repeated summer imagery, and wit-driven taglines turn this campaign into a vibrant visual celebration of summer. LaCroix becomes a fun, playful brand that looks, feels, and belongs exactly like the summer everyone wants.</p>
+    </div>
+  </div>
+
+  <div class="work-label">Executions</div>
+  <div class="work-grid">
+    <img class="work-img" src="images/lacroix-exec-01.png" alt="LaCroix Your Summer Refresh" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/lacroix-exec-02.png" alt="LaCroix Shell Yeah" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/lacroix-exec-03.png" alt="LaCroix One in a Melon" onclick="openLightbox(this)">
+    <img class="work-img" src="images/lacroix-exec-04.png" alt="LaCroix Always Sunny" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/lacroix-exec-05.png" alt="LaCroix 4 Poster Series" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/lacroix-exec-06.png" alt="LaCroix Brand Swag" onclick="openLightbox(this)">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     05 — BREEZE
+═══════════════════════════════════ -->
+<section class="campaign" id="breeze">
+  <div class="campaign-header">
+    <div class="campaign-number">Campaign 05</div>
+    <div class="campaign-title">Breeze Airways</div>
+    <div class="campaign-tagline">"See? Easy."</div>
+    <div class="campaign-courage">Courage to Simplify</div>
+  </div>
+
+  <img class="campaign-cover" src="images/breeze-preview.png" alt="Breeze Campaign Cover" onclick="openLightbox(this)">
+
+  <div class="campaign-copy">
+    <div class="copy-block">
+      <div class="copy-label">The Insight</div>
+      <p class="copy-text">Flying has become something people endure rather than enjoy. Indirect routes, middle seats, and baggage chaos have normalized what passengers have simply accepted as the unavoidable cost of air travel. What was once the thrill of going somewhere has quietly become something to survive.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">The Strategy</div>
+      <p class="copy-text">Humorous headlines and fun cartoon illustrations make the viewer laugh at the chaos of flying. The campaign doesn't lecture or promise luxury. It quietly points at the friction, disarms it with humor, and positions Breeze as the effortless solution to an experience that never had to be this hard.</p>
+    </div>
+  </div>
+
+  <div class="work-label">Executions</div>
+  <div class="work-grid">
+    <img class="work-img" src="images/breeze-exec-01.png" alt="Breeze Middle Seats" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/breeze-exec-02.png" alt="Breeze Dinner's Still On" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/breeze-exec-03.png" alt="Breeze Chaos Avoided" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/breeze-exec-04.png" alt="Breeze 3 Poster Series" onclick="openLightbox(this)">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     06 — PEPSI
+═══════════════════════════════════ -->
+<section class="campaign" id="pepsi">
+  <div class="campaign-header">
+    <div class="campaign-number">Campaign 06</div>
+    <div class="campaign-title">Pepsi</div>
+    <div class="campaign-tagline">"It Was Theirs. Now It's Yours."</div>
+    <div class="campaign-courage">Courage to Claim</div>
+  </div>
+
+  <img class="campaign-cover" src="images/pepsi-preview.png" alt="Pepsi Campaign Cover" onclick="openLightbox(this)">
+
+  <div class="campaign-copy">
+    <div class="copy-block">
+      <div class="copy-label">The Insight</div>
+      <p class="copy-text">Gen Z reinvents nostalgia culture as a native act, sampling the past to create the present. Their relationship to the 80s isn't memory but an aesthetic longing. Drawn to the texture, feeling, and energy of an era they never lived, they claim it, remix it, and make it entirely their own.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">The Strategy</div>
+      <p class="copy-text">Bold vector illustrations and vibrant photography work together to build the visual world. The photography roots this campaign in the nostalgic warmth of the 80s, while graphic illustrations bring it forward with authentic Gen Z energy, to reference the era without recreating it.</p>
+    </div>
+  </div>
+
+  <div class="work-label">Executions</div>
+  <div class="work-grid">
+    <img class="work-img" src="images/pepsi-exec-01.png" alt="Pepsi Good Vibes Rolling In" onclick="openLightbox(this)">
+    <img class="work-img" src="images/pepsi-exec-02.png" alt="Pepsi And Just Like That" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/pepsi-exec-03.png" alt="Pepsi A Flavor You'll Remember" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/pepsi-exec-04.png" alt="Pepsi 3 Poster Series" onclick="openLightbox(this)">
+    <img class="work-img" src="images/pepsi-exec-05.png" alt="Pepsi TikTok" onclick="openLightbox(this)">
+    <img class="work-img landscape" src="images/pepsi-exec-06.png" alt="Pepsi IG Reel" onclick="openLightbox(this)">
+  </div>
+</section>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+  <button id="lightbox-prev" onclick="shiftLightbox(-1)">&#8592;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button id="lightbox-next" onclick="shiftLightbox(1)">&#8594;</button>
+  <div id="lightbox-caption"></div>
+</div>
+
+<script>
+// ── LIGHTBOX ──────────────────────────────────────────────────────
+var allImgs = [];
+var currentIdx = 0;
+
+// Collect all clickable images on load
+window.addEventListener('load', function() {
+  allImgs = Array.from(document.querySelectorAll('img[onclick]'));
+});
+
+function openLightbox(el) {
+  currentIdx = allImgs.indexOf(el);
+  showLightboxImg(currentIdx);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function showLightboxImg(idx) {
+  var img = allImgs[idx];
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-img').alt = img.alt;
+  document.getElementById('lightbox-caption').textContent = img.alt + ' — ' + (idx+1) + ' / ' + allImgs.length;
+}
+
+function shiftLightbox(dir) {
+  currentIdx = (currentIdx + dir + allImgs.length) % allImgs.length;
+  showLightboxImg(currentIdx);
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') shiftLightbox(-1);
+  if (e.key === 'ArrowRight') shiftLightbox(1);
+});
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+// ── ACTIVE TAB on scroll ──────────────────────────────────────────
+var sections = ['nike','rivian','loreal','lacroix','breeze','pepsi'];
+var tabs = document.querySelectorAll('.tab');
+
+window.addEventListener('scroll', function() {
+  var scrollY = window.scrollY + 160;
+  var current = sections[0];
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && el.offsetTop <= scrollY) current = id;
+  });
+  tabs.forEach(function(tab) {
+    tab.classList.toggle('active', tab.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
