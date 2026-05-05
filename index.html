@@ -737,6 +737,14 @@ document.addEventListener('mouseout',e=>{if(e.target.matches('button,a,[onclick]
 
 // ENTRY
 function dismissEntry(){document.getElementById('entry-screen').classList.add('hidden');}
+// If returning from a campaign page, skip entry and go straight to work
+window.addEventListener('load', function(){
+  if(sessionStorage.getItem('startPage')==='work'){
+    sessionStorage.removeItem('startPage');
+    document.getElementById('entry-screen').classList.add('hidden');
+    showPage('work');
+  }
+});
 setTimeout(()=>{document.getElementById('entry-screen').classList.add('hidden');},7000);
 
 // NAV SCROLL
