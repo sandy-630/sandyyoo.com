@@ -201,7 +201,7 @@ nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);}
 }
 .scroll-line{width:46px;height:1px;background:linear-gradient(to right,var(--grey),transparent);animation:scrollPulse 2.4s ease infinite;}
 
-.home-preview{padding:140px 64px 72px 76px;}
+.home-preview{padding:80px 64px 72px 76px;}
 .section-kicker{
   font-family:var(--font-display);font-weight:400;
   font-size:.8rem;letter-spacing:.45em;text-transform:uppercase;
@@ -396,11 +396,11 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;justify
   <!-- WORDMARK FILE: place wordmark.png in the same folder as index.html -->
   <a href="#" onclick="showPage('home');return false;"><img src="wordmark.svg?v=2" alt="Sandy Yoo" style="height:36px;display:block;"></a>
   <ul class="nav-links">
-    <li><a href="#" onclick="showPage('work');return false;">Work</a></li>
-    <li><a href="#" onclick="showPage('portfolio');return false;">Book</a></li>
-    <li><a href="#" onclick="showPage('other');return false;">Other Work</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+    <li><a href="#" onclick="dismissEntry();showPage('work');return false;">Work</a></li>
+    <li><a href="#" onclick="dismissEntry();showPage('portfolio');return false;">Book</a></li>
+    <li><a href="#" onclick="dismissEntry();showPage('other');return false;">Other Work</a></li>
+    <li><a href="#" onclick="dismissEntry();showPage('about');return false;">About</a></li>
+    <li><a href="#" onclick="dismissEntry();showPage('contact');return false;">Contact</a></li>
   </ul>
 </nav>
 
