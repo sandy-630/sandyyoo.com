@@ -74,12 +74,12 @@ footer{border-top:1px solid rgba(245,244,240,0.1);padding:32px 64px;display:flex
 
 <nav>
   <a href="index.html"><img src="wordmark.svg?v=2" alt="Sandy Yoo" style="height:36px;display:block;"></a>
-  <ul class="nav-links">
-    <li><a href="index.html" onclick="sessionStorage.setItem('startPage','work')">Work</a></li>
-    <li><a href="index.html" onclick="sessionStorage.setItem('startPage','portfolio')">Book</a></li>
-    <li><a href="index.html" onclick="sessionStorage.setItem('startPage','other')">Other Works</a></li>
-    <li><a href="index.html" onclick="sessionStorage.setItem('startPage','about')">About</a></li>
-    <li><a href="index.html" onclick="sessionStorage.setItem('startPage','contact')">Contact</a></li>
+    <ul class="nav-links">
+    <li><a href="#" onclick="goTo('work');return false;">Work</a></li>
+    <li><a href="#" onclick="goTo('portfolio');return false;">Book</a></li>
+    <li><a href="#" onclick="goTo('other');return false;">Other Work</a></li>
+    <li><a href="#" onclick="goTo('about');return false;">About</a></li>
+    <li><a href="#" onclick="goTo('contact');return false;">Contact</a></li>
   </ul>
 </nav>
 
@@ -202,6 +202,12 @@ document.addEventListener('keydown', function(e) {
 document.getElementById('lb').addEventListener('click', function(e) {
   if (e.target === this) closeLb();
 });
+</script>
+<script>
+function goTo(page){
+  sessionStorage.setItem('startPage', page);
+  window.location.href = 'index.html';
+}
 </script>
 </body>
 </html>
