@@ -750,10 +750,11 @@ document.addEventListener('mouseout',e=>{if(e.target.matches('button,a,[onclick]
 function dismissEntry(){document.getElementById('entry-screen').classList.add('hidden');}
 // If returning from a campaign page, skip entry and go straight to work
 window.addEventListener('load', function(){
-  if(sessionStorage.getItem('startPage')==='work'){
+  var startPage = sessionStorage.getItem('startPage');
+  if(startPage){
     sessionStorage.removeItem('startPage');
     document.getElementById('entry-screen').classList.add('hidden');
-    showPage('work');
+    showPage(startPage);
   }
 });
 setTimeout(()=>{document.getElementById('entry-screen').classList.add('hidden');},7000);
