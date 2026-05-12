@@ -429,11 +429,17 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;justify
 
   /* ABOUT */
   .about-layout{grid-template-columns:1fr;padding:0 24px;gap:24px;}
-  .about-img-col{height:300px;aspect-ratio:auto;}
-  .about-text-col{padding:0;}
+  .about-img-col{height:300px;aspect-ratio:auto;width:100%;}
+  .about-text-col{padding:0 0 0 16px;display:flex;flex-direction:column;}
+  .about-name{font-size:clamp(18px,5vw,32px);}
+  .about-role{margin-top:8px;}
+  .about-bio{margin-top:16px;}
 
   /* CONTACT */
-  .contact-layout{grid-template-columns:1fr;gap:40px;padding:40px 24px;}
+  .contact-layout{grid-template-columns:1fr;gap:32px;padding:24px 24px;}
+  .contact-info h3{font-size:clamp(20px,6vw,36px);line-height:1.1;}
+  .form-group{margin-bottom:16px;}
+  .direct-links{margin-top:32px;}
 
   /* CAMPAIGN PAGES */
   .page-wrap{padding-top:60px;}
