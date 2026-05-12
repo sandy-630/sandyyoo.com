@@ -384,6 +384,70 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;justify
 @keyframes fadeUp{from{opacity:0;transform:translateY(17px);}to{opacity:1;transform:translateY(0);}}
 @keyframes expandLine{from{width:0;}to{width:100%;}}
 @keyframes scrollPulse{0%,100%{opacity:.22;}50%{opacity:.65;}}
+
+/* ═══════════════════════════════════
+   MOBILE RESPONSIVE — max-width 768px
+═══════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav{padding:14px 24px;}
+  .nav-links{gap:16px;}
+  .nav-links a{font-size:.55rem;letter-spacing:.12em;}
+
+  /* ENTRY SCREEN */
+  .entry-screen{padding:40px 24px;}
+  .entry-title{font-size:clamp(48px,14vw,80px);}
+  .entry-sub{font-size:.55rem;letter-spacing:.28em;}
+  .entry-enter{padding:11px 24px;font-size:.55rem;}
+
+  /* HOME */
+  .home-hero{padding:100px 24px 40px;}
+  .home-kicker{font-size:.75rem;letter-spacing:.28em;}
+  .home-headline{font-size:clamp(38px,10vw,72px);}
+  .home-cta{flex-direction:column;gap:10px;align-items:flex-start;}
+  .btn-primary,.btn-ghost{width:140px;padding:11px 0;font-size:.6rem;}
+  .home-preview{padding:60px 24px 40px;}
+  .preview-grid{grid-template-columns:repeat(2,1fr);}
+
+  /* PAGE HEADERS */
+  .page-header{padding:0 24px 40px;}
+  .section-kicker{font-size:.6rem;}
+  .page-title{font-size:clamp(32px,10vw,64px);}
+
+  /* WORK PAGE */
+  .campaign-trigger{padding:20px 24px;}
+  .ct-brand{font-size:clamp(16px,5vw,28px);}
+  .expand-inner{grid-template-columns:1fr;padding:24px 24px 40px;}
+  .expand-visual{display:none;}
+
+  /* PORTFOLIO */
+  .portfolio-layout{grid-template-columns:1fr;padding:24px 24px;}
+
+  /* OTHER WORKS */
+  #page-other .page-header{padding:0 24px 40px;}
+
+  /* ABOUT */
+  .about-layout{grid-template-columns:1fr;padding:0 24px;gap:24px;}
+  .about-img-col{height:300px;aspect-ratio:auto;}
+  .about-text-col{padding:0;}
+
+  /* CONTACT */
+  .contact-layout{grid-template-columns:1fr;gap:40px;padding:40px 24px;}
+
+  /* CAMPAIGN PAGES */
+  .page-wrap{padding-top:60px;}
+  .hero{padding:24px 24px 32px;height:auto;min-height:220px;}
+  .hero-name{font-size:clamp(36px,10vw,64px);}
+  .hero-tagline{font-size:clamp(11px,3.5vw,16px);}
+  .body-grid{grid-template-columns:1fr;gap:32px;padding:32px 24px;}
+  .campaign-nav{padding:24px 24px;}
+
+  /* ABOUT PAGE videos/other */
+  #page-other [style*="padding:0 64px"]{padding:0 24px !important;}
+  #page-other [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;}
+  #page-other [style*="width:calc(50%"]{width:100% !important;}
+}
 </style>
 </head>
 <body>
