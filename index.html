@@ -821,9 +821,15 @@ function dismissEntry(){document.getElementById('entry-screen').classList.add('h
 // If returning from a campaign page, skip entry and go straight to work
 window.addEventListener('load', function(){
   var startPage = sessionStorage.getItem('startPage');
+  var skipEntry = sessionStorage.getItem('skipEntry');
   if(startPage){
     sessionStorage.removeItem('startPage');
-    document.getElementById('entry-screen').classList.add('hidden');
+    sessionStorage.removeItem('skipEntry');
+    var entry = document.getElementById('entry-screen');
+    entry.style.transition = 'none';
+    entry.style.opacity = '0';
+    entry.style.pointerEvents = 'none';
+    entry.classList.add('hidden');
     showPage(startPage);
   }
 });
