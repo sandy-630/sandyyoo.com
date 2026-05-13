@@ -475,7 +475,7 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;justify
 </nav>
 
 <!-- ENTRY -->
-<div class="entry-screen" id="entry-screen">
+<div class="entry-screen" id="entry-screen" style="display:none;">
   <div class="entry-title">
     <div class="entry-unwavering">Unwavering</div>
     <div class="entry-courage">Courage</div>
@@ -821,16 +821,15 @@ function dismissEntry(){document.getElementById('entry-screen').classList.add('h
 // If returning from a campaign page, skip entry and go straight to work
 window.addEventListener('load', function(){
   var startPage = sessionStorage.getItem('startPage');
-  var skipEntry = sessionStorage.getItem('skipEntry');
   if(startPage){
+    // Returning from campaign page — go straight to target page
     sessionStorage.removeItem('startPage');
     sessionStorage.removeItem('skipEntry');
-    var entry = document.getElementById('entry-screen');
-    entry.style.transition = 'none';
-    entry.style.opacity = '0';
-    entry.style.pointerEvents = 'none';
-    entry.classList.add('hidden');
     showPage(startPage);
+  } else {
+    // True first visit — show entry screen
+    var entry = document.getElementById('entry-screen');
+    entry.style.display = 'flex';
   }
 });
 setTimeout(()=>{document.getElementById('entry-screen').classList.add('hidden');},7000);
